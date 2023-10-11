@@ -3,20 +3,20 @@ package edu.hw1;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import static edu.hw1.Constants.FinalRes;
-import static edu.hw1.Constants.MinNumVal;
+import static edu.hw1.Constants.FINALRES;
+import static edu.hw1.Constants.MINVALNUM;
 
 public class Task6 {
     private Task6() {
     }
 
     public static int getKepler(int num, int steps) {
-        if (num < MinNumVal) {
+        if (num < MINVALNUM) {
             return -1;
         }
         String curNum = Integer.toString(num);
 
-        if (num == FinalRes) {
+        if (num == FINALRES) {
             return steps;
         }
         int[] masOfNums = new int[curNum.length()];

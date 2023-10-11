@@ -1,9 +1,11 @@
 package edu.hw1;
 
-import static edu.hw1.Constants.MinNum;
-import static edu.hw1.Constants.MinNumForWhile;
-import static edu.hw1.Constants.OneStepUpper;
-import static edu.hw1.Constants.TwoStepUpper;
+import static edu.hw1.Constants.MINNUM;
+import static edu.hw1.Constants.MINUMFORWHILE;
+
+import static edu.hw1.Constants.ONESTEPUPPER;
+
+import static edu.hw1.Constants.TWOSTEPUPPER;
 
 public class Task5 {
     private Task5() {
@@ -11,7 +13,7 @@ public class Task5 {
 
     public static boolean isPalindromeDescendant(int value) {
         int num = Math.abs(value);
-        if (num < MinNum) {
+        if (num < MINNUM) {
             return false;
         }
         StringBuilder curNum = new StringBuilder(Integer.toString(num));
@@ -32,17 +34,17 @@ public class Task5 {
         if (curNum.length() % 2 == 1) {
             curNum.append('0');
         }
-        while (num > MinNumForWhile) {
+        while (num > MINUMFORWHILE) {
             newNum = 0;
             if (curNum.length() % 2 == 1) {
                 curNum.append('0');
             }
             for (int i = 1; i < curNum.length(); i += 2) {
                 int curPart = (curNum.charAt(i) - '0') + (curNum.charAt(i - 1) - '0');
-                if (curPart >= MinNum) {
-                    newNum *= TwoStepUpper;
+                if (curPart >= MINNUM) {
+                    newNum *= TWOSTEPUPPER;
                 } else {
-                    newNum *= OneStepUpper;
+                    newNum *= ONESTEPUPPER;
                 }
                 newNum += curPart;
             }
@@ -54,7 +56,7 @@ public class Task5 {
                     break;
                 }
             }
-            if (check && newNum > MinNumForWhile) {
+            if (check && newNum > MINUMFORWHILE) {
                 res = true;
                 break;
             }
