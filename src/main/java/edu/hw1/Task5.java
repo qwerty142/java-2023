@@ -2,9 +2,7 @@ package edu.hw1;
 
 import static edu.hw1.Constants.MINNUM;
 import static edu.hw1.Constants.MINUMFORWHILE;
-
 import static edu.hw1.Constants.ONESTEPUPPER;
-
 import static edu.hw1.Constants.TWOSTEPUPPER;
 
 public class Task5 {

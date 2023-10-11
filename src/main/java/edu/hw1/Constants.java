@@ -1,6 +1,9 @@
 package edu.hw1;
 
 public class Constants {
+    private Constants() {
+    }
+
     public static final int MAXSECONDS = 60;
     public static final int SECONDSINMINUTE = 60;
     public static final int STEP = 10;
