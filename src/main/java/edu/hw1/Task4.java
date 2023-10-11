@@ -3,16 +3,17 @@ package edu.hw1;
 import java.util.Arrays;
 
 public class Task4 {
-    private Task4(){}
+    private Task4() {
+    }
 
-    public static String fixString(String input_string){
-        if(input_string == null){
+    public static String fixString(String input_string) {
+        if (input_string == null) {
             return "";
         }
         char[] fixed_string = input_string.toCharArray();
 
-        for(int i = 1; i < input_string.length(); i+=2){
-            char c = fixed_string[i-1];
+        for (int i = 1; i < input_string.length(); i += 2) {
+            char c = fixed_string[i - 1];
             fixed_string[i - 1] = fixed_string[i];
             fixed_string[i] = c;
         }
