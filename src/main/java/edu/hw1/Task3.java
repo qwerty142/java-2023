@@ -4,16 +4,16 @@ public class Task3 {
     private Task3() {
     }
 
-    public static boolean checkArrayOnNesting(int[] first_array, int[] second_array) {
-        if (first_array.length == 0) {
-            return second_array.length != 0;
-        } else if (second_array.length == 0) {
+    public static boolean checkArrayOnNesting(int[] firstArray, int[] secondArray) {
+        if (firstArray.length == 0) {
+            return secondArray.length != 0;
+        } else if (secondArray.length == 0) {
             return false;
         }
         int minimumFirstArray = Integer.MAX_VALUE;
         int maximumFirstArray = Integer.MIN_VALUE;
 
-        for (int elem : first_array) {
+        for (int elem : firstArray) {
             if (elem <= minimumFirstArray) {
                 minimumFirstArray = elem;
             }
@@ -23,11 +23,11 @@ public class Task3 {
         }
         boolean availabilityOfMin = false;
         boolean availabilityOfMax = false;
-        for (int elem : second_array) {
+        for (int elem : secondArray) {
             if (elem < minimumFirstArray) {
                 availabilityOfMin = true;
             }
-            if (elem > minimumFirstArray) {
+            if (elem > maximumFirstArray) {
                 availabilityOfMax = true;
             }
             if (availabilityOfMin && availabilityOfMax) {

@@ -3,15 +3,15 @@ package edu.hw1;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import static edu.hw1.Constants.finalRes;
+import static edu.hw1.Constants.minNumVal;
 
 public class Task6 {
     private Task6() {
     }
 
     public static int getKepler(int num, int steps) {
-        int minNum = 1000;
-        int finalRes = 6174;
-        if (num < minNum) {
+        if (num < minNumVal) {
             return -1;
         }
         String curNum = Integer.toString(num);

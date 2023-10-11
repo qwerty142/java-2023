@@ -1,5 +1,7 @@
 package edu.hw1;
 
+import static edu.hw1.Constants.step;
+
 public class Task2 {
     private Task2() {
     }
@@ -7,7 +9,6 @@ public class Task2 {
     public static int countDigits(int digit) {
         int newDigit = Math.abs(digit);
         int res = 0;
-        int step = 10;
         do {
             newDigit /= step;
             res += 1;

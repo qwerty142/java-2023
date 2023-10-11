@@ -1,14 +1,16 @@
 package edu.hw1;
 
+import static edu.hw1.Constants.maxSeconds;
+import static edu.hw1.Constants.secondsInMinute;
+
 public final class Task1 {
     private Task1() {
     }
+
     public static int getSum(String s) {
         int result = 0;
-        int maxSeconds = 60;
-        int secondsInMinute = 60;
-        boolean index_of = s.matches("\\d+:\\d\\d");
-        if (!index_of) {
+        boolean indexOf = s.matches("\\d+:\\d\\d");
+        if (!indexOf) {
             return -1;
         }
         String[] pos = s.split(":");
