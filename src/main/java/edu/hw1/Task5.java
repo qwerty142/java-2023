@@ -6,56 +6,57 @@ public class Task5 {
 
     public static boolean isPalindromeDescendant(int num) {
         num = Math.abs(num);
-        if (num < 10) {
+        int minNum = 10;
+        if (num < minNum) {
             return false;
         }
-        StringBuilder cur_num = new StringBuilder(Integer.toString(num));
+        StringBuilder curNum = new StringBuilder(Integer.toString(num));
 
-        boolean first_check = true;
-        for (int i = 0; i < cur_num.length() / 2; ++i) {
-            if (cur_num.charAt(i) != cur_num.charAt(cur_num.length() - 1 - i)) {
-                first_check = false;
+        boolean firstCheck = true;
+        for (int i = 0; i < curNum.length() / 2; ++i) {
+            if (curNum.charAt(i) != curNum.charAt(curNum.length() - 1 - i)) {
+                firstCheck = false;
                 break;
             }
         }
-        if (first_check) {
+        if (firstCheck) {
             return true;
         }
 
-        int new_num = 0;
+        int newNum = 0;
         boolean res = false;
-        if (cur_num.length() % 2 == 1) {
-            cur_num.append('0');
+        if (curNum.length() % 2 == 1) {
+            curNum.append('0');
         }
         while (num > 9) {
-            new_num = 0;
-            if (cur_num.length() % 2 == 1) {
-                cur_num.append('0');
+            newNum = 0;
+            if (curNum.length() % 2 == 1) {
+                curNum.append('0');
             }
-            for (int i = 1; i < cur_num.length(); i += 2) {
-                int cur_part = (cur_num.charAt(i) - '0') + (cur_num.charAt(i - 1) - '0');
-                if (cur_part >= 10) {
-                    new_num *= 100;
-                    new_num += cur_part;
+            for (int i = 1; i < curNum.length(); i += 2) {
+                int curPart = (curNum.charAt(i) - '0') + (curNum.charAt(i - 1) - '0');
+                if (curPart >= 10) {
+                    newNum *= 100;
+                    newNum += curPart;
                 } else {
-                    new_num *= 10;
-                    new_num += cur_part;
+                    newNum *= 10;
+                    newNum += curPart;
                 }
             }
-            String check_string = Integer.toString(new_num);
+            String checkString = Integer.toString(newNum);
             boolean check = true;
-            for (int i = 0; i < check_string.length() / 2; ++i) {
-                if (check_string.charAt(i) != check_string.charAt(check_string.length() - 1 - i)) {
+            for (int i = 0; i < checkString.length() / 2; ++i) {
+                if (checkString.charAt(i) != checkString.charAt(checkString.length() - 1 - i)) {
                     check = false;
                     break;
                 }
             }
-            if (check && new_num > 9) {
+            if (check && newNum > 9) {
                 res = true;
                 break;
             }
-            cur_num = new StringBuilder(check_string);
-            num = new_num;
+            curNum = new StringBuilder(checkString);
+            num = newNum;
         }
         return res;
     }

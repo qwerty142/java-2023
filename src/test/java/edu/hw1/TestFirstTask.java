@@ -15,17 +15,17 @@ public class TestFirstTask {
         int four = Task1.getSum("00: 78"); // fall from seconds limit
         int five = Task1.getSum("abc:df"); // fall from uncorrected symbols
         // when
-        int res_1 = 610;
-        int res_2 = 0;
-        int res_3 = 6040;
-        int res_4 = -1;
-        int res_5 = -1;
+        int res1 = 610;
+        int res2 = 0;
+        int res3 = 6040;
+        int res4 = -1;
+        int res5 = -1;
 
         // then
-        assertThat(first).isEqualTo(res_1);
-        assertThat(second).isEqualTo(res_2);
-        assertThat(third).isEqualTo(res_3);
-        assertThat(four).isEqualTo(res_4);
-        assertThat(five).isEqualTo(res_5);
+        assertThat(first).isEqualTo(res1);
+        assertThat(second).isEqualTo(res2);
+        assertThat(third).isEqualTo(res3);
+        assertThat(four).isEqualTo(res4);
+        assertThat(five).isEqualTo(res5);
     }
 }

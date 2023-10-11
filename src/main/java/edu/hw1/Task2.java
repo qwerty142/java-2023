@@ -5,12 +5,13 @@ public class Task2 {
     }
 
     public static int countDigits(int digit) {
-        int new_digit = Math.abs(digit);
+        int newDigit = Math.abs(digit);
         int res = 0;
+        int step = 10;
         do {
-            new_digit /= 10;
+            newDigit /= step;
             res += 1;
-        } while (new_digit > 0);
+        } while (newDigit > 0);
         return res;
 
     }

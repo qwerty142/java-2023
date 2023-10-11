@@ -16,7 +16,7 @@ public class TestTaskSix {
 
     @DisplayName("Количество ходов до числа Каплера") @ParameterizedTest @MethodSource("Tests")
     public void CheckTask6(int num, int amount_of_steps) {
-        assertThat(Task6.get_Kepler(num, 0)).isEqualTo(amount_of_steps);
+        assertThat(Task6.getKepler(num, 0)).isEqualTo(amount_of_steps);
     }
 }
 

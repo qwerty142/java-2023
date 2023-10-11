@@ -10,30 +10,30 @@ public class Task3 {
         } else if (second_array.length == 0) {
             return false;
         }
-        int minimum_first_array = Integer.MAX_VALUE;
-        int maximum_first_array = Integer.MIN_VALUE;
+        int minimumFirstArray = Integer.MAX_VALUE;
+        int maximumFirstArray = Integer.MIN_VALUE;
 
         for (int elem : first_array) {
-            if (elem <= minimum_first_array) {
-                minimum_first_array = elem;
+            if (elem <= minimumFirstArray) {
+                minimumFirstArray = elem;
             }
-            if (elem >= maximum_first_array) {
-                maximum_first_array = elem;
+            if (elem >= maximumFirstArray) {
+                maximumFirstArray = elem;
             }
         }
-        boolean availability_of_min = false;
-        boolean availability_of_max = false;
+        boolean availabilityOfMin = false;
+        boolean availabilityOfMax = false;
         for (int elem : second_array) {
-            if (elem < minimum_first_array) {
-                availability_of_min = true;
+            if (elem < minimumFirstArray) {
+                availabilityOfMin = true;
             }
-            if (elem > maximum_first_array) {
-                availability_of_max = true;
+            if (elem > minimumFirstArray) {
+                availabilityOfMax = true;
             }
-            if (availability_of_min && availability_of_max) {
+            if (availabilityOfMin && availabilityOfMax) {
                 break;
             }
         }
-        return availability_of_min && availability_of_max;
+        return availabilityOfMin && availabilityOfMax;
     }
 }
