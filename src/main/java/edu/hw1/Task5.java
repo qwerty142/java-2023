@@ -8,7 +8,7 @@ public class Task5 {
         if(num < 10){
             return false;
         }
-        String cur_num = Integer.toString(num);
+        StringBuilder cur_num = new StringBuilder(Integer.toString(num));
 
         boolean first_check = true;
         for(int i = 0;i < cur_num.length()/2;++i){
@@ -24,12 +24,12 @@ public class Task5 {
         int new_num = 0;
         boolean res = false;
         if(cur_num.length() %2 == 1){
-            cur_num = cur_num + '0';
+            cur_num.append('0');
         }
         while(num > 9){
             new_num = 0;
             if(cur_num.length() % 2 == 1){
-                cur_num = cur_num + '0';
+                cur_num.append('0');
             }
             for(int i = 1; i< cur_num.length(); i += 2){
                 int cur_part = (cur_num.charAt(i) - '0') + (cur_num.charAt(i - 1) - '0');
@@ -54,7 +54,7 @@ public class Task5 {
                 res = true;
                 break;
             }
-            cur_num = check_string;
+            cur_num = new StringBuilder(check_string);
             num = new_num;
         }
         return res;

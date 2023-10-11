@@ -19,7 +19,6 @@ public class Task4 {
         /*if(input_string.length() > 1 && (input_string.length() % 2 == 1)){
             fixed_string[input_string.length() - 1] = input_string.charAt(input_string.length() - 1);
         }*/
-        String result = String.valueOf(fixed_string);
-        return result;
+        return String.valueOf(fixed_string);
     }
 }

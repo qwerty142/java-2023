@@ -5,12 +5,7 @@ public class Task3 {
 
     public static boolean check_array_on_nesting(int[] first_array, int[] second_array){
         if(first_array.length == 0){
-            if(second_array.length == 0){
-                return false;
-            }
-            else{
-                return true;
-            }
+            return second_array.length != 0;
         }
         else if(second_array.length == 0){
             return false;
@@ -39,9 +34,6 @@ public class Task3 {
                 break;
             }
         }
-        if(availability_of_min && availability_of_max){
-            return true;
-        }
-        return false;
+        return availability_of_min && availability_of_max;
     }
 }

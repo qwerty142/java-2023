@@ -7,7 +7,7 @@ import java.util.stream.IntStream;
 public class Task6 {
     private Task6(){}
 
-    public static int get_Kapler(int num, int steps){
+    public static int get_Kepler(int num, int steps){
         if(num < 1000){
             return -1;
         }
@@ -25,6 +25,6 @@ public class Task6 {
         int lower_num = Integer.parseInt(num_str);
         int upper_num = Integer.parseInt(new StringBuffer(num_str).reverse().toString());
         int res = upper_num - lower_num;
-        return get_Kapler(res, steps + 1);
+        return get_Kepler(res, steps + 1);
     }
 }

@@ -5,18 +5,15 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-public class Test_for_task_1 {
-    @Test
-    @DisplayName("Общая длина видео в секундах")
-    @ValueSource
-    void CheckTask1() {
+public class TestFirstTask {
+    @Test @DisplayName("Общая длина видео в секундах") @ValueSource void CheckTask1() {
         // given
 
         int first = Task1.get_sum("10:10"); // 610
         int second = Task1.get_sum("00:00"); // 0
         int third = Task1.get_sum("100:40"); // 6040
         int four = Task1.get_sum("00: 78"); // fall from seconds limit
-        int five = Task1.get_sum("abc:df"); // fall from uncorect symbals
+        int five = Task1.get_sum("abc:df"); // fall from uncorrected symbols
         // when
         int res_1 = 610;
         int res_2 = 0;
