@@ -9,11 +9,11 @@ public class TestFirstTask {
     @Test @DisplayName("Общая длина видео в секундах") @ValueSource void CheckTask1() {
         // given
 
-        int first = Task1.get_sum("10:10"); // 610
-        int second = Task1.get_sum("00:00"); // 0
-        int third = Task1.get_sum("100:40"); // 6040
-        int four = Task1.get_sum("00: 78"); // fall from seconds limit
-        int five = Task1.get_sum("abc:df"); // fall from uncorrected symbols
+        int first = Task1.getSum("10:10"); // 610
+        int second = Task1.getSum("00:00"); // 0
+        int third = Task1.getSum("100:40"); // 6040
+        int four = Task1.getSum("00: 78"); // fall from seconds limit
+        int five = Task1.getSum("abc:df"); // fall from uncorrected symbols
         // when
         int res_1 = 610;
         int res_2 = 0;

@@ -4,7 +4,7 @@ public final class Task1 {
     private Task1() {
     }
 
-    public static int get_sum(String s) {
+    public static int getSum(String s) {
         int result = 0;
         boolean index_of = s.matches("\\d+:\\d\\d");
         if (!index_of) {

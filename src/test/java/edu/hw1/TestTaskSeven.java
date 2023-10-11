@@ -7,14 +7,14 @@ import org.junit.jupiter.params.provider.MethodSource;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class TestTaskSeven {
-    static Arguments[] Tests_for_right() {
+    static Arguments[] TestsForRight() {
         return new Arguments[] {
             Arguments.of(8, 1, 4), // right
             Arguments.of(16, 2, 4), // right
         };
     }
 
-    static Arguments[] Tests_for_left() {
+    static Arguments[] TestsForLeft() {
         return new Arguments[] {
             Arguments.of(16, 1, 1), // left
             Arguments.of(17, 2, 6), // left
@@ -23,15 +23,15 @@ public class TestTaskSeven {
 
     @DisplayName("циклический сдвиг")
     @ParameterizedTest
-    @MethodSource("Tests_for_right")
+    @MethodSource("TestsForRight")
     public void CheckTask7Right(int num, int rotate, int result) {
-        assertThat(Task7.right_rotate(num, rotate)).isEqualTo(result);
+        assertThat(Task7.rightRotate(num, rotate)).isEqualTo(result);
     }
 
     @ParameterizedTest
-    @MethodSource("Tests_for_left")
+    @MethodSource("TestsForLeft")
     public void CheckTask7Left(int num, int rotate, int result) {
-        assertThat(Task7.left_rotate(num, rotate)).isEqualTo(result);
+        assertThat(Task7.leftRotate(num, rotate)).isEqualTo(result);
     }
 
 }

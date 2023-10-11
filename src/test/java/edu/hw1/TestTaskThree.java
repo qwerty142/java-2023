@@ -24,7 +24,7 @@ public class TestTaskThree {
     @ParameterizedTest
     @MethodSource("Tests")
     public void CheckTask3(int[] first, int[] second, boolean result) {
-        assertThat(Task3.check_array_on_nesting(first, second)).isEqualTo(result);
+        assertThat(Task3.checkArrayOnNesting(first, second)).isEqualTo(result);
 
     }
 }

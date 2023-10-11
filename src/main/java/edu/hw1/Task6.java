@@ -23,7 +23,6 @@ public class Task6 {
         }
         Arrays.sort(mas_of_nums);
         String num_str = IntStream.of(mas_of_nums).mapToObj(Integer::toString).collect(Collectors.joining(""));
-        ;
         int lower_num = Integer.parseInt(num_str);
         int upper_num = Integer.parseInt(new StringBuffer(num_str).reverse().toString());
         int res = upper_num - lower_num;

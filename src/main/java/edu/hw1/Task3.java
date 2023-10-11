@@ -4,7 +4,7 @@ public class Task3 {
     private Task3() {
     }
 
-    public static boolean check_array_on_nesting(int[] first_array, int[] second_array) {
+    public static boolean checkArrayOnNesting(int[] first_array, int[] second_array) {
         if (first_array.length == 0) {
             return second_array.length != 0;
         } else if (second_array.length == 0) {
