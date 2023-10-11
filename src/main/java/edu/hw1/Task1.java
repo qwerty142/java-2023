@@ -1,7 +1,7 @@
 package edu.hw1;
 
-import static edu.hw1.Constants.maxSeconds;
-import static edu.hw1.Constants.secondsInMinute;
+import static edu.hw1.Constants.MaxSeconds;
+import static edu.hw1.Constants.SecondsInMinute;
 
 public final class Task1 {
     private Task1() {
@@ -14,10 +14,10 @@ public final class Task1 {
             return -1;
         }
         String[] pos = s.split(":");
-        if (Integer.parseInt(pos[1]) >= maxSeconds) {
+        if (Integer.parseInt(pos[1]) >= MaxSeconds) {
             return -1;
         }
-        result += Integer.parseInt(pos[0]) * secondsInMinute;
+        result += Integer.parseInt(pos[0]) * SecondsInMinute;
         result += Integer.parseInt(pos[1]);
         return result;
     }
