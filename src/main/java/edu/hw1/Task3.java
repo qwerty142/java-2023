@@ -25,6 +25,9 @@ public final class Task3 {
     }
 
     public static boolean checkArrayOnNesting(int[] firstArray, int[] secondArray) {
+        if (firstArray == null || secondArray == null) {
+            return false;
+        }
         if (firstArray.length == 0) {
             return secondArray.length != 0;
         } else if (secondArray.length == 0) {

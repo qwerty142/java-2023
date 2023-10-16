@@ -10,6 +10,9 @@ public class Task3Test {
     // Given
     static Arguments[] Tests() {
         return new Arguments[] {
+            Arguments.of(null, null, false),
+            Arguments.of(new int[] {1,2,3}, null, false),
+            Arguments.of(null, new int[] {3,4,5}, false),
             Arguments.of(new int[] {}, new int[] {}, false),
             Arguments.of(new int[] {}, new int[] {1}, true),
             Arguments.of(new int[] {1}, new int[] {}, false),
