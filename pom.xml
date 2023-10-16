@@ -95,6 +95,16 @@
             <version>${assertj.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.13.0</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.rfin.java-util</groupId>
+            <artifactId>pair</artifactId>
+            <version>1.1.0</version>
+        </dependency>
     </dependencies>
 
     <build>

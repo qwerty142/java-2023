@@ -1,10 +1,10 @@
 package edu.hw1;
 
-import static edu.hw1.Constants.STEP;
-
-public class Task2 {
+public final class Task2 {
     private Task2() {
     }
+
+    public static final int STEP = 10;
 
     public static int countDigits(int digit) {
         int newDigit = Math.abs(digit);

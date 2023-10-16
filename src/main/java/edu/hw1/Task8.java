@@ -1,10 +1,10 @@
 package edu.hw1;
 
-import static edu.hw1.Constants.BOARDLENGTH;
-
-public class Task8 {
+public final class Task8 {
     private Task8() {
     }
+
+    public static final int BOARDLENGTH = 8;
 
     public static boolean knightBoardCapture(int[][] board) {
         if (board.length != BOARDLENGTH) {

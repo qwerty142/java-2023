@@ -3,31 +3,36 @@ package edu.hw1;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import static edu.hw1.Constants.FINALRES;
-import static edu.hw1.Constants.MINVALNUM;
 
-public class Task6 {
+public final class Task6 {
     private Task6() {
     }
 
-    public static int getKepler(int num, int steps) {
-        if (num < MINVALNUM) {
+    private static final int MIN_VAL_NUM = 1000;
+    private static final int KEPLER_NUM = 6174;
+    private static final int MAX_VAL_NUM = 9999;
+
+    public static int getKaprekerNum(int n, int steps) {
+        if (n < MIN_VAL_NUM || n > MAX_VAL_NUM) {
             return -1;
         }
-        String curNum = Integer.toString(num);
-
-        if (num == FINALRES) {
+        String curNum = Integer.toString(n);
+        if (n == KEPLER_NUM) {
             return steps;
         }
         int[] masOfNums = new int[curNum.length()];
-        for (int i = 0; i < curNum.length(); ++i) {
+        for (int i = 0; i < curNum.length(); i++) {
             masOfNums[i] = curNum.charAt(i) - '0';
         }
         Arrays.sort(masOfNums);
-        String numStr = IntStream.of(masOfNums).mapToObj(Integer::toString).collect(Collectors.joining(""));
+        //безопасней
+        String numStr =
+            IntStream.of(masOfNums)
+            .mapToObj(Integer::toString)
+            .collect(Collectors.joining(""));
         int lowerNum = Integer.parseInt(numStr);
         int upperNum = Integer.parseInt(new StringBuffer(numStr).reverse().toString());
         int res = upperNum - lowerNum;
-        return getKepler(res, steps + 1);
+        return getKaprekerNum(res, steps + 1);
     }
 }

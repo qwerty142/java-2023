@@ -6,7 +6,8 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-public class TestTaskEight {
+public class Task8Test {
+    //Given
     static Arguments[] Tests() {
         return new Arguments[] {
             Arguments.of(new int[][] {
@@ -38,15 +39,38 @@ public class TestTaskEight {
                 {0, 0, 0, 0, 0, 1, 0, 1},
                 {1, 0, 0, 0, 1, 0, 1, 0},
                 {0, 0, 0, 1, 0, 1, 0, 1}
-            }, false) // right
+            }, false), // right
+            Arguments.of(new int[][] {
+                {0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0}
+            }, true),
+            Arguments.of(new int[][] {
+                {1, 1, 1, 1, 1, 1, 1, 1},
+                {1, 1, 1, 1, 1, 1, 1, 1},
+                {1, 1, 1, 1, 1, 1, 1, 1},
+                {1, 1, 1, 1, 1, 1, 1, 1},
+                {1, 1, 1, 1, 1, 1, 1, 1},
+                {1, 1, 1, 1, 1, 1, 1, 1},
+                {1, 1, 1, 1, 1, 1, 1, 1},
+                {1, 1, 1, 1, 1, 1, 1, 1}
+            }, false)
         };
     }
 
     @DisplayName("Проверка коней на шахматной доске")
     @ParameterizedTest
     @MethodSource("Tests")
-    public void CheckTask8(int[][] board, boolean result) {
-        assertThat(Task8.knightBoardCapture(board)).isEqualTo(result);
+    public void knightBoardCapture_shouldReturnAbilityOfPlacedHorsesNotToBeatEachOther(int[][] board, boolean result) {
+        //When
+        boolean abilityOfPlacing = Task8.knightBoardCapture(board);
+        //Then
+        assertThat(abilityOfPlacing).isEqualTo(result);
 
     }
 }

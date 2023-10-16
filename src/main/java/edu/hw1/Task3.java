@@ -1,7 +1,27 @@
 package edu.hw1;
 
-public class Task3 {
+import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.Pair;
+import java.util.Arrays;
+
+public final class Task3 {
     private Task3() {
+    }
+
+    public static Pair<Integer, Integer> findMinAndMax(int[] array) {
+        Integer minimum = Integer.MAX_VALUE;
+        Integer maximum = Integer.MIN_VALUE;
+
+        for (int elem : array) {
+            if (elem <= minimum) {
+                minimum = elem;
+            }
+            if (elem >= maximum) {
+                maximum = elem;
+            }
+        }
+
+        return new ImmutablePair<>(minimum, maximum);
     }
 
     public static boolean checkArrayOnNesting(int[] firstArray, int[] secondArray) {
@@ -10,30 +30,17 @@ public class Task3 {
         } else if (secondArray.length == 0) {
             return false;
         }
-        int minimumFirstArray = Integer.MAX_VALUE;
-        int maximumFirstArray = Integer.MIN_VALUE;
+        int minimumFirstArray;
+        int maximumFirstArray;
 
-        for (int elem : firstArray) {
-            if (elem <= minimumFirstArray) {
-                minimumFirstArray = elem;
-            }
-            if (elem >= maximumFirstArray) {
-                maximumFirstArray = elem;
-            }
-        }
-        boolean availabilityOfMin = false;
-        boolean availabilityOfMax = false;
-        for (int elem : secondArray) {
-            if (elem < minimumFirstArray) {
-                availabilityOfMin = true;
-            }
-            if (elem > maximumFirstArray) {
-                availabilityOfMax = true;
-            }
-            if (availabilityOfMin && availabilityOfMax) {
-                break;
-            }
-        }
+        var newMinMax = findMinAndMax(firstArray);
+
+        minimumFirstArray = newMinMax.getLeft();
+        maximumFirstArray = newMinMax.getRight();
+
+        boolean availabilityOfMin = minimumFirstArray > Arrays.stream(secondArray).min().getAsInt();
+        boolean availabilityOfMax = maximumFirstArray < Arrays.stream(secondArray).max().getAsInt();
+
         return availabilityOfMin && availabilityOfMax;
     }
 }

@@ -6,32 +6,43 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-public class TestTaskSeven {
+public class Task7Test {
+    //Given for right rotate
     static Arguments[] TestsForRight() {
         return new Arguments[] {
             Arguments.of(8, 1, 4), // right
             Arguments.of(16, 2, 4), // right
+            Arguments.of(16, -1, 1), // right
+            Arguments.of(6, 0, 6) // right
         };
     }
-
+    //Given for left rotate
     static Arguments[] TestsForLeft() {
         return new Arguments[] {
             Arguments.of(16, 1, 1), // left
             Arguments.of(17, 2, 6), // left
+            Arguments.of(8, -1, 4), // left
+            Arguments.of(6, 0, 6) // left
         };
     }
 
     @DisplayName("циклический сдвиг")
     @ParameterizedTest
     @MethodSource("TestsForRight")
-    public void CheckTask7Right(int num, int rotate, int result) {
-        assertThat(Task7.rightRotate(num, rotate)).isEqualTo(result);
+    public void rightRotate_shouldReturnNumAfterCycleRightRotate(int num, int rotate, int result) {
+        //When
+        int rotatedNum = Task7.rightRotate(num,rotate);
+        //Then
+        assertThat(rotatedNum).isEqualTo(result);
     }
 
     @ParameterizedTest
     @MethodSource("TestsForLeft")
-    public void CheckTask7Left(int num, int rotate, int result) {
-        assertThat(Task7.leftRotate(num, rotate)).isEqualTo(result);
+    public void leftRotate_shouldReturnNumAfterCycleLeftRotate(int num, int rotate, int result) {
+        //When
+        int rotatedNum = Task7.leftRotate(num,rotate);
+        //Then
+        assertThat(rotatedNum).isEqualTo(result);
     }
 
 }

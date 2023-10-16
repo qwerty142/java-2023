@@ -6,9 +6,12 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-public class TestTaskFour {
+public class Task4Test {
+    // Given
     static Arguments[] Tests() {
         return new Arguments[] {
+            Arguments.of("123456", "214365"),
+            Arguments.of("hTsii  s aimex dpus rtni.g", "This is a mixed up string."),
             Arguments.of("qwerty", "wqreyt"),
             Arguments.of("qwertyu", "wqreytu"),
             Arguments.of("qwertyu", "wqreytu"),
@@ -24,7 +27,10 @@ public class TestTaskFour {
     @DisplayName("Проверка строки с измененными местами символов")
     @ParameterizedTest
     @MethodSource("Tests")
-    public void CheckTask4(String input, String result) {
-        assertThat(Task4.fixString(input)).isEqualTo(result);
+    public void fixString_shouldReturnStringWithReverseOfEachPairOfSymbols(String input, String result) {
+        // When
+        String reversedString = Task4.fixString(input);
+        // Then
+        assertThat(reversedString).isEqualTo(result);
     }
 }
