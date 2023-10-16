@@ -1,8 +1,8 @@
 package edu.hw1;
 
+import java.util.Arrays;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
-import java.util.Arrays;
 
 public final class Task3 {
     private Task3() {
