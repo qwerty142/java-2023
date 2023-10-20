@@ -3,15 +3,15 @@ package edu.project1;
 import java.util.Scanner;
 
 public class HangMan {
-    private final GDitionary gDitionary;
-    private Session session;
+    private final HangManDictionary gDictionary;
+    private final Session session;
     private final int maxAttempts;
     private final String answer;
 
-    public HangMan(int maxAttempts) {
+    public HangMan(int maxAttempts, HangManDictionary dictionary) {
+        gDictionary = dictionary;
         this.maxAttempts = maxAttempts;
-        gDitionary = new GDitionary();
-        answer = gDitionary.randomWord();
+        answer = gDictionary.randomWord();
         session = new Session(answer, maxAttempts);
     }
 
@@ -25,7 +25,7 @@ public class HangMan {
         while (true) {
             System.out.println("Enter symbol");
             input = scanner.hasNext() ? scanner.nextLine() : "";
-            GuessResult result = tryGuess(session, input);
+            GuessResult result = tryGuess(input);
             printState(result);
             if (result instanceof GuessResult.Defeat
                 || result instanceof GuessResult.Win) {
@@ -34,7 +34,7 @@ public class HangMan {
         }
     }
 
-    protected GuessResult tryGuess(Session session, String input) {
+    public GuessResult tryGuess(String input) {
         if (input.equals("")) {
             return session.giveUp();
         }

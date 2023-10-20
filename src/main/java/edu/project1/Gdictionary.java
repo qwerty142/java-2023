@@ -4,10 +4,10 @@ import java.util.List;
 import java.util.Random;
 import org.jetbrains.annotations.NotNull;
 
-public class GDitionary implements Dictionary {
+public class Gdictionary implements HangManDictionary {
     List<String> words;
 
-    public GDitionary() {
+    public Gdictionary() {
         words.add("tree");
         words.add("car");
         words.add("mobile");
