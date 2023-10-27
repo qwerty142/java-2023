@@ -1,32 +1,35 @@
 package edu.project1;
 
-import java.util.Scanner;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.Stack;
 
 public class HangMan {
-    private final HangManDictionary gDictionary;
+    private final HangManDictionary gameDictionary;
     private final Session session;
     private final int maxAttempts;
-    private final String answer;
-    private static Logger logger = LogManager.getLogger();
+    protected final MessageLogger messageLogger = new MessageLogger();
+    protected final Stack<String> messageBox;
 
-    public HangMan(int maxAttempts, HangManDictionary dictionary) {
-        gDictionary = dictionary;
+    public HangMan(int maxAttempts, HangManDictionary dictionary, Stack<String> messageBox) {
+        gameDictionary = dictionary;
         this.maxAttempts = maxAttempts;
-        answer = gDictionary.randomWord();
+        String answer = gameDictionary.randomWord();
         session = new Session(answer, maxAttempts);
+        this.messageBox = messageBox;
     }
 
     public void run() {
-        Scanner scanner = new Scanner(System.in);
-        logger.trace("Welcome to HangMan game");
-        logger.trace("You have" + Integer.toString(maxAttempts));
-        logger.trace("If you want to stop game, just press enter without writing any things");
+        messageLogger.writeMessage("Welcome to HangMan game");
+        messageLogger.writeMessage("You have" + maxAttempts);
+        messageLogger.writeMessage("If you want to stop game, just press enter without writing any things");
         String input;
         while (true) {
-            logger.trace("Enter symbol");
-            input = scanner.hasNext() ? scanner.nextLine() : "";
+            messageLogger.writeMessage("Enter symbol");
+            if (messageBox == null) {
+                input = messageLogger.getMessage("");
+            } else {
+                input = messageLogger.getMessage(messageBox.peek());
+                messageBox.pop();
+            }
             GuessResult result = tryGuess(input);
             printState(result);
             if (result instanceof ResultsOfGuess.Defeat
@@ -48,7 +51,7 @@ public class HangMan {
 
     @SuppressWarnings("checkstyle:RegexpSinglelineJava")
     private void printState(GuessResult guess) {
-        logger.trace(guess.message());
-        logger.trace("Current word is" + guess.state());
+        messageLogger.writeMessage(guess.message());
+        messageLogger.writeMessage("Current word is" + guess.state());
     }
 }

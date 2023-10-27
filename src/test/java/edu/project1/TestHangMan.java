@@ -1,5 +1,7 @@
 package edu.project1;
 
+import org.apache.logging.log4j.LogBuilder;
+import org.apache.logging.log4j.message.MessageFactory;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -7,7 +9,9 @@ import org.junit.jupiter.params.provider.ValueSource;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class TestHangMan {
     private static final String ANSWER = "qwerty";
@@ -24,7 +28,7 @@ public class TestHangMan {
         @Test
         public void testWinAndSuccessfulGuess() {
             // Given
-            HangMan hangMan = new HangMan(5, new DictionaryForTest());
+            HangMan hangMan = new HangMan(5, new DictionaryForTest(), null);
             List<Character> answers = new ArrayList<>();
             for (int i = 0; i < ANSWER.length() - 1; i++) {
                 answers.add(ANSWER.charAt(i));
@@ -41,7 +45,7 @@ public class TestHangMan {
         @Test
         public void testLooseAndFailedGuess(){
         // Given
-            HangMan hangMan = new HangMan(5, new DictionaryForTest());
+            HangMan hangMan = new HangMan(5, new DictionaryForTest(), null);
             List<Character> answers = new ArrayList<>();
             for (int i = 0; i < DEFEAT_ANSWER.length() - 1; i++) {
                 answers.add(DEFEAT_ANSWER.charAt(i));
@@ -60,7 +64,7 @@ public class TestHangMan {
     @ValueSource(strings = {"7", "/", "`", "[]", "kl"})
         public void testIncorrectInput(String input){
             // Given
-            HangMan hangMan = new HangMan(5, new DictionaryForTest());
+            HangMan hangMan = new HangMan(5, new DictionaryForTest(), null);
             // When
             GuessResult guessResult = hangMan.tryGuess(input);
             // Then
@@ -69,7 +73,7 @@ public class TestHangMan {
         @Test
         public void testRepeating(){
             // Given
-            HangMan hangMan = new HangMan(5, new DictionaryForTest());
+            HangMan hangMan = new HangMan(5, new DictionaryForTest(), null);
             // When
             GuessResult guessResultFirst = hangMan.tryGuess("e");
             GuessResult guessResultSecond = hangMan.tryGuess("e");
@@ -79,12 +83,28 @@ public class TestHangMan {
         @Test
         public void testGiveUp(){
             // Given
-            HangMan hangMan = new HangMan(5, new DictionaryForTest());
+            HangMan hangMan = new HangMan(5, new DictionaryForTest(), null);
             String input = "";
             // When
             GuessResult guessResult = hangMan.tryGuess(input);
             // Then
             assertThat(guessResult).isInstanceOf(ResultsOfGuess.Defeat.class);
+
+        }
+
+        @Test
+        public void testDefaultWork() {
+            Stack<String> messages = new Stack<>();
+            messages.push("y");
+            messages.push("t");
+            messages.push("r");
+            messages.push("e");
+            messages.push("w");
+            messages.push("q");
+
+            HangMan hangMan = new HangMan(5, new DictionaryForTest(), messages);
+            hangMan.run();
+            assertThat(hangMan.messageBox.empty()).isTrue();
 
         }
     }
