@@ -1,13 +1,15 @@
 package edu.project1;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import org.jetbrains.annotations.NotNull;
 
-public class Gdictionary implements HangManDictionary {
+public class GameDictionary implements HangManDictionary {
     List<String> words;
 
-    public Gdictionary() {
+    public GameDictionary() {
+        words = new ArrayList<>();
         words.add("tree");
         words.add("car");
         words.add("mobile");

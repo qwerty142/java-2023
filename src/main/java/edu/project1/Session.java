@@ -22,10 +22,10 @@ public class Session {
     @SuppressWarnings("checkstyle:ReturnCount") @NotNull
     public GuessResult guess(char guess) {
         if (attempts >= maxAttempts) {
-            return new GuessResult.Defeat(userAnswer, attempts, maxAttempts);
+            return new ResultsOfGuess.Defeat(userAnswer, attempts, maxAttempts);
         }
         if (alreadyUsedSymbols.contains(guess)) {
-            return new GuessResult.FailedInputGuess(userAnswer);
+            return new ResultsOfGuess.SameGuess(userAnswer);
         }
         boolean guessSymbol = false;
         alreadyUsedSymbols.add(guess);
@@ -40,19 +40,19 @@ public class Session {
 
         if (guessSymbol) {
             if (!userAnswer.contains("*")) {
-                return new GuessResult.Win(userAnswer, attempts, maxAttempts);
+                return new ResultsOfGuess.Win(userAnswer, attempts, maxAttempts);
             }
-            return new GuessResult.SuccessfulGuess(userAnswer, attempts, maxAttempts);
+            return new ResultsOfGuess.SuccessfulGuess(userAnswer, attempts, maxAttempts);
         }
         attempts++;
-        return new GuessResult.FailedGuess(userAnswer, attempts, maxAttempts);
+        return new ResultsOfGuess.FailedGuess(userAnswer, attempts, maxAttempts);
     }
 
     @NotNull GuessResult giveUp() {
-        return new GuessResult.Defeat(userAnswer, attempts, maxAttempts);
+        return new ResultsOfGuess.Defeat(userAnswer, attempts, maxAttempts);
     }
 
     @NotNull GuessResult uncorrectInput() {
-        return new GuessResult.FailedInputGuess(userAnswer);
+        return new ResultsOfGuess.FailedInputGuess(userAnswer);
     }
 }

@@ -1,12 +1,15 @@
 package edu.project1;
 
 import java.util.Scanner;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class HangMan {
     private final HangManDictionary gDictionary;
     private final Session session;
     private final int maxAttempts;
     private final String answer;
+    private static Logger logger = LogManager.getLogger();
 
     public HangMan(int maxAttempts, HangManDictionary dictionary) {
         gDictionary = dictionary;
@@ -15,26 +18,25 @@ public class HangMan {
         session = new Session(answer, maxAttempts);
     }
 
-    @SuppressWarnings("checkstyle:RegexpSinglelineJava")
     public void run() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Welcome to HangMan game");
-        System.out.println("You have" + Integer.toString(maxAttempts));
-        System.out.println("If you want to stop game, just press enter without writing any things");
+        logger.trace("Welcome to HangMan game");
+        logger.trace("You have" + Integer.toString(maxAttempts));
+        logger.trace("If you want to stop game, just press enter without writing any things");
         String input;
         while (true) {
-            System.out.println("Enter symbol");
+            logger.trace("Enter symbol");
             input = scanner.hasNext() ? scanner.nextLine() : "";
             GuessResult result = tryGuess(input);
             printState(result);
-            if (result instanceof GuessResult.Defeat
-                || result instanceof GuessResult.Win) {
+            if (result instanceof ResultsOfGuess.Defeat
+                || result instanceof ResultsOfGuess.Win) {
                 break;
             }
         }
     }
 
-    public GuessResult tryGuess(String input) {
+    protected GuessResult tryGuess(String input) {
         if (input.equals("")) {
             return session.giveUp();
         }
@@ -46,7 +48,7 @@ public class HangMan {
 
     @SuppressWarnings("checkstyle:RegexpSinglelineJava")
     private void printState(GuessResult guess) {
-        System.out.println(guess.message());
-        System.out.println("Current word is" + guess.state());
+        logger.trace(guess.message());
+        logger.trace("Current word is" + guess.state());
     }
 }
