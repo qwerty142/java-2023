@@ -1,7 +1,6 @@
 package edu.hw3;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 public final class Task1 {
