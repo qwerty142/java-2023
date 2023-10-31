@@ -1,6 +1,5 @@
 package edu.hw2;
 
-import edu.hw2.Task3.ConnectionManagers.ConnectionManager;
 import edu.hw2.Task3.ConnectionManagers.DefaultConnectionManager;
 import edu.hw2.Task3.ConnectionManagers.FaultyConnectionManager;
 import edu.hw2.Task3.ConnectionTypes.FaultyConnection;
@@ -13,8 +12,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class Task3Test {
     @Test
     public void TestDefault(){
-        var success = new DefaultConnectionManager().getConnection(true);
-        var fault = new DefaultConnectionManager().getConnection(false);
+        var success = new DefaultConnectionManager(2, 0).getConnection();
+        var fault = new DefaultConnectionManager(1, 1).getConnection();
 
         assertThat(fault).isInstanceOf(FaultyConnection.class);
         assertThat(success).isInstanceOf(StableConnection.class);
@@ -22,7 +21,7 @@ public class Task3Test {
 
     @Test
     public void TestDefaultSituation() throws Exception {
-        var p = new PopularCommandExecutor(new FaultyConnectionManager(true), 5);
+        var p = new PopularCommandExecutor(new FaultyConnectionManager(1), 5);
         p.updatePackages();
         assertThat(p.workDone).isTrue();
     }

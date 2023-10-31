@@ -8,7 +8,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class Task4Test {
     @Test
     public void GetCallingInfo_shouldReturnNameAndClassWhereMethodWasCalled(){
-        Information information = GetCallingData.callingInfo();
+        Information information = GetCallingData.callingInfo(new Throwable());
 
         assertThat(information.nameOfClass()).isEqualTo(this.getClass().getName());
         assertThat(information.nameOfMethod()).isEqualTo("GetCallingInfo_shouldReturnNameAndClassWhereMethodWasCalled");

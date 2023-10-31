@@ -6,32 +6,26 @@ import edu.hw2.Task3.ConnectionTypes.StableConnection;
 import java.util.Random;
 
 public class DefaultConnectionManager implements ConnectionManager {
-    private static final int[] MASSIVEFORRANDOM = new int[] {5, 2, 3, 4, 1, 8};
+    private static final int[] MASSIVE_FOR_RANDOM = new int[] {5, 2, 3, 4, 1, 8};
     private final Random random;
+    private final int errorConnectionValue;
+    private final double errorCheck;
 
-    public DefaultConnectionManager() {
+    public DefaultConnectionManager(int errorConnectionValue, double errorCheck) {
+        if (errorCheck > 1 || errorCheck < 0) {
+            throw new IllegalArgumentException();
+        }
+        this.errorConnectionValue = errorConnectionValue;
+        this.errorCheck = errorCheck;
         random = new Random();
     }
 
     @Override
     public Connection getConnection() {
-        int randomIndex = random.nextInt(MASSIVEFORRANDOM.length);
-        int randomIndexFroFaultyConnection = random.nextInt(MASSIVEFORRANDOM.length);
-
-        return MASSIVEFORRANDOM[randomIndex] % 2 == 1 ? new FaultyConnection(
-            randomIndexFroFaultyConnection % 2 == 0)
-            :
-            new StableConnection();
-    }
-    // Случайность невозможно тестировать так что для этого нужна отдельная функция
-
-    public Connection getConnection(boolean checkForTests) {
-        int randomIndex = random.nextInt(MASSIVEFORRANDOM.length);
-        int randomIndexFroFaultyConnection = random.nextInt(MASSIVEFORRANDOM.length);
-
-        return !checkForTests ? new FaultyConnection(
-            randomIndexFroFaultyConnection % 2 == 0)
-            :
-            new StableConnection();
+        double randomNumber = random.nextDouble();
+        if (errorCheck > randomNumber) {
+            return new FaultyConnection(errorConnectionValue);
+        }
+        return new StableConnection();
     }
 }

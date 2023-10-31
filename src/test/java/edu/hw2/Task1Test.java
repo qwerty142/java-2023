@@ -99,4 +99,19 @@ public class Task1Test {
 
         assertThat(res.evaluate()).isEqualTo(37);
     }
+
+    static Arguments[] TestsForString() {
+        return new Arguments[] {
+            Arguments.of(new Expr.Constant(6), "6.0"),
+            Arguments.of(new Expr.Exponent(new Expr.Constant(6), 1), "6.0^1.0"),
+            Arguments.of(new Expr.Negate(new Expr.Constant(6)), "-6.0"),
+            Arguments.of(new Expr.Multiplication(new Expr.Constant(6), new Expr.Constant(6)), "6.0*6.0"),
+            Arguments.of(new Expr.Addition(new Expr.Constant(6), new Expr.Constant(6)), "6.0+6.0")
+        };
+    }
+    @ParameterizedTest
+    @MethodSource("TestsForString")
+    public void TestToString(Expr value, String expectedResult) {
+        assertThat(value.toString()).isEqualTo(expectedResult);
+    }
 }
