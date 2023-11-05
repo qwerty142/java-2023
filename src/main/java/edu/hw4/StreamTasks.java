@@ -124,10 +124,16 @@ import java.util.stream.Collectors;
             .size() != 0;
     }
 
-    /*public static Map<Animal.Type, Integer> summaryWeightOfEachAnimalOfNeededAge(List<Animal> animals, long k, long i) {
-        return animals.stream().filter(animal -> animal.age() > k && animal.age() < i).collect(Collectors.toMap(Animal::type, 1,
-        ))
-    }*/
+    public static Map<Animal.Type, Integer> summaryWeightOfEachAnimalOfNeededAge(List<Animal> animals, long k, long i) {
+        return animals.stream()
+            .filter(animal -> animal.age() > k && animal.age() < i)
+            .collect(
+                Collectors.toMap(
+                    Animal::type,
+                    (Animal::weight),
+                    Integer::sum
+                ));
+    }
 
     public static List<Animal> animalsSortedByTypeSexName(List<Animal> animals) {
         return animals

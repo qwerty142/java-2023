@@ -1,25 +1,8 @@
 package edu.hw4;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.stream.Stream;
-import static edu.hw4.StreamTasks.animalWithBiggestName;
-import static edu.hw4.StreamTasks.animalsByBiggestWeight;
-import static edu.hw4.StreamTasks.animalsThatCanBiteAndNeededHeight;
-import static edu.hw4.StreamTasks.animalsWherePawsNotEqualAge;
 import static edu.hw4.StreamTasks.animalsWithWeightBiggerThanHeight;
-import static edu.hw4.StreamTasks.biggestAmountOfAnimalsBySex;
-import static edu.hw4.StreamTasks.biggestWeightAnimalLowerThanK;
-import static edu.hw4.StreamTasks.countPaws;
-import static edu.hw4.StreamTasks.numberOfEachAnimal;
-import static edu.hw4.StreamTasks.sortAnimalsHeight;
-import static edu.hw4.StreamTasks.sortAnimalsWeight;
 import static org.assertj.core.api.Assertions.assertThat;
 public class Task12Test {
     private final static Animal fish = new Animal("F", Animal.Type.FISH, Animal.Sex.F, 1, 2, 1, false);
