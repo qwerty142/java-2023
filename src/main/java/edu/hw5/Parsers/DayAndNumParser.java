@@ -11,6 +11,9 @@ public final class DayAndNumParser {
     static String pattern = "\\d+ (days|weeks|months|years) (ago|after)";
 
     public static ParseResult tryParseDayAndNumString(ParseResult result) {
+        if (result == null) {
+            throw new IllegalArgumentException();
+        }
         if (result.parseResult() || !result.date().matches(pattern)) {
             return result;
         }

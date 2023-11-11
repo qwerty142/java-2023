@@ -13,35 +13,35 @@ public final class Task8 {
 
     public static boolean mathOddLength(String string) {
         if (string == null) {
-            throw new NullPointerException();
+            throw new IllegalArgumentException();
         }
         return PATTERN1.matcher(string).matches();
     }
 
     public static boolean mathStarts0AndHasOddLengthOrStarts1AndHasEvenLength(String string) {
         if (string == null) {
-            throw new NullPointerException();
+            throw new IllegalArgumentException();
         }
         return PATTERN2.matcher(string).matches();
     }
 
     public static boolean mathTheNumberOfZerosMultipleThree(String string) {
         if (string == null) {
-            throw new NullPointerException();
+            throw new IllegalArgumentException();
         }
         return PATTERN3.matcher(string).matches();
     }
 
     public static boolean mathAnyStringExcept11And111(String string) {
         if (string == null) {
-            throw new NullPointerException();
+            throw new IllegalArgumentException();
         }
         return PATTERN4.matcher(string).matches();
     }
 
     public static boolean mathAnyOddNumberIsOne(String string) {
         if (string == null) {
-            throw new NullPointerException();
+            throw new IllegalArgumentException();
         }
         return PATTERN5.matcher(string).matches();
     }

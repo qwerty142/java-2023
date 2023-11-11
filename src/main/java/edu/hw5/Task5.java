@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 
     public static boolean isValidCarNumber(String number) {
         if (number == null) {
-            throw new NullPointerException();
+            throw new IllegalArgumentException();
         }
         return INPUT_PATTERN.matcher(number).matches();
     }

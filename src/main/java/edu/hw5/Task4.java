@@ -9,7 +9,7 @@ public final class Task4 {
 
     public static boolean checkPassword(String password) {
         if (password == null) {
-            throw new NullPointerException();
+            throw new IllegalArgumentException();
         }
         return inputPattern.matcher(password).find();
     }

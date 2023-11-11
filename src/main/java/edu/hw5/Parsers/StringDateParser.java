@@ -12,6 +12,9 @@ public final class StringDateParser {
 
     @SuppressWarnings("checkstyle:ReturnCount")
     public static ParseResult tryParseString(ParseResult result) {
+        if (result == null) {
+            throw new IllegalArgumentException();
+        }
         if (result.parseResult()) {
             return result;
         }

@@ -14,7 +14,7 @@ public final class Task1 {
     @SuppressWarnings("checkstyle:MultipleStringLiterals")
     public static String countTime(List<String> inputDate) {
         if (inputDate == null) {
-            throw new NullPointerException();
+            throw new IllegalArgumentException();
         }
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd, HH:mm");
         Duration res = Duration.ZERO;

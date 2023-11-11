@@ -11,21 +11,21 @@ public final class Task7 {
 
     public static boolean atLeast3CharactersThirdCharacter0(String string) {
         if (string == null) {
-            throw new NullPointerException();
+            throw new IllegalArgumentException();
         }
         return pattern1.matcher(string).matches();
     }
 
     public static boolean startsAndEndsWithSameCharacter(String string) {
         if (string == null) {
-            throw new NullPointerException();
+            throw new IllegalArgumentException();
         }
         return startEndWithSameSymbol.matcher(string).matches();
     }
 
     public static boolean lengthNoLessThan1AndNoMoreThan3(String string) {
         if (string == null) {
-            throw new NullPointerException();
+            throw new IllegalArgumentException();
         }
         return noMoreThan3Symbols.matcher(string).matches();
     }

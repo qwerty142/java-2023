@@ -10,6 +10,9 @@ public final class ShortTypeDateParser {
     static Pattern pattern = Pattern.compile("\\d{1,2}/\\d{1,2}/\\d{1,4}");
 
     public static ParseResult tryParseShort(ParseResult result) {
+        if (result == null) {
+            throw new IllegalArgumentException();
+        }
         if (result.parseResult() || !pattern.matcher(result.date()).matches()) {
             return result;
         }

@@ -7,7 +7,7 @@ public final class Task6 {
 
     public static boolean checkOnSubString(String sub, String string) {
         if (sub == null || string == null) {
-            throw new NullPointerException();
+            throw new IllegalArgumentException();
         }
         Pattern pattern = Pattern.compile(sub);
         return pattern.matcher(string).find();

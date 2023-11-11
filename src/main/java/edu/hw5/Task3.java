@@ -13,7 +13,7 @@ public final class Task3 {
 
     public static Optional<LocalDate> parseDate(String date) {
         if (date == null) {
-            throw new NullPointerException();
+            throw new IllegalArgumentException();
         }
         LocalDate localDate;
         ParseResult result = new ParseResult(date, Optional.empty(), false);

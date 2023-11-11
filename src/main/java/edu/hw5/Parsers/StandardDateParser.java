@@ -10,6 +10,9 @@ public final class StandardDateParser {
     static Pattern pattern = Pattern.compile("\\d{4}-\\d{2}-\\d{2}");
 
     public static ParseResult tryStandardParse(ParseResult result) {
+        if (result == null) {
+            throw new IllegalArgumentException();
+        }
         if (!pattern.matcher(result.date()).matches()) {
             return result;
         }

@@ -26,9 +26,9 @@ public class Task6Test {
 
     @Test
     public void TestOnNull() {
-        assertThrows(NullPointerException.class, () -> Task6.checkOnSubString(null, null));
-        assertThrows(NullPointerException.class, () -> Task6.checkOnSubString("ac", null));
-        assertThrows(NullPointerException.class, () -> Task6.checkOnSubString(null, "ac"));
+        assertThrows(IllegalArgumentException.class, () -> Task6.checkOnSubString(null, null));
+        assertThrows(IllegalArgumentException.class, () -> Task6.checkOnSubString("ac", null));
+        assertThrows(IllegalArgumentException.class, () -> Task6.checkOnSubString(null, "ac"));
     }
 
     static Stream<Arguments> InCorrectSubs() {
