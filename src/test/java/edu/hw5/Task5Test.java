@@ -26,6 +26,6 @@ public class Task5Test {
 
     @Test
     public void TestNullInput() {
-        assertThrows(NullPointerException.class, () -> Task5.isValidCarNumber(null));
+        assertThrows(IllegalArgumentException.class, () -> Task5.isValidCarNumber(null));
     }
 }
