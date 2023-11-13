@@ -13,7 +13,7 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class Task8Test {
-    static Stream<Arguments> ReverseIterator() {
+    static Stream<Arguments> reverseIterator() {
         return Stream.of(
             Arguments.of(new ArrayList<Integer>()),
             Arguments.of(new Vector<Integer>()),
@@ -23,8 +23,8 @@ public class Task8Test {
         );
     }
     @ParameterizedTest
-    @MethodSource("ReverseIterator")
-    public void ReverseIteratorTest(Collection<Integer> input) {
+    @MethodSource("reverseIterator")
+    public void reverseIteratorTest(Collection<Integer> input) {
         input.add(10);
         input.add(20);
         input.add(30);

@@ -6,8 +6,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class Task6Test {
 
     @Test
-    public void StockMarketBaseFuncTest() {
-        var market = new Task6.Market();
+    public void stockMarketBaseFuncTest() {
+        var market = new Task6.StockMarketImpl();
         var aliExpress = new Task6.Stock("Aliexpress", 220);
         var tesla = new Task6.Stock("Tesla", 150);
 

@@ -10,7 +10,7 @@ public final class Task2 {
 
     public static List<String> clusterize(String input) {
         if (input == null) {
-            throw new NullPointerException("Input string cant be null");
+            throw new IllegalArgumentException("Input string cant be null");
         }
         List<String> result = new ArrayList<>();
         Stack<Character> brackets = new Stack<>();

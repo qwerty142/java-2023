@@ -6,7 +6,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class Task7Test {
     @Test
-    public void NullFriendlyComparatorTest() {
+    public void nullFriendlyComparatorTest() {
         TreeMap<String, String> treeMap = new TreeMap<>(new Task7.NullFriendlyComparator());
         treeMap.put(null, "test");
 

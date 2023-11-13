@@ -1,6 +1,5 @@
 package edu.hw3;
 
-import java.util.Comparator;
 import java.util.PriorityQueue;
 import org.jetbrains.annotations.NotNull;
 
@@ -16,14 +15,6 @@ public final class Task6 {
         }
     }
 
-    public static class StockComparator implements Comparator<Stock> {
-
-        @Override
-        public int compare(Stock o1, Stock o2) {
-            return o1.compareTo(o2);
-        }
-    }
-
     interface StockMarket {
 
         void add(Stock stock);
@@ -33,27 +24,23 @@ public final class Task6 {
         Stock mostValuableStock();
     }
 
-    public static class Market implements StockMarket {
+    public static class StockMarketImpl implements StockMarket {
 
-        private PriorityQueue<Stock> goods;
-
-        public Market() {
-            goods = new PriorityQueue<>(new StockComparator());
-        }
+        private PriorityQueue<Stock> stocks = new PriorityQueue<>();
 
         @Override
         public void add(Stock stock) {
-            goods.add(stock);
+            stocks.add(stock);
         }
 
         @Override
         public void remove(Stock stock) {
-            goods.remove(stock);
+            stocks.remove(stock);
         }
 
         @Override
         public Stock mostValuableStock() {
-            return goods.peek();
+            return stocks.peek();
         }
     }
 }

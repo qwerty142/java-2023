@@ -8,7 +8,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class Task2Test {
-    static Arguments[] Clusterize() {
+    static Arguments[] clusterize() {
         return new Arguments[] {
             Arguments.of("()()()", Arrays.stream((new String[] { "()", "()", "()" })).toList()),
             Arguments.of("((()))", Arrays.stream((new String[] { "((()))" })).toList()),
@@ -17,8 +17,8 @@ public class Task2Test {
         };
     }
     @ParameterizedTest
-    @MethodSource("Clusterize")
-    public void ClusterizeTest(String input, List<String> result) {
+    @MethodSource("clusterize")
+    public void clusterizeTest(String input, List<String> result) {
         assertThat(Task2.clusterize(input)).isEqualTo(result);
     }
 }

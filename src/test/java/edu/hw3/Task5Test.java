@@ -13,10 +13,13 @@ public class Task5Test {
         return Stream.of(
             Arguments.of(
                 List.of("John Locke", "Thomas Aquinas", "David Hume", "Rene Descartes"), "ASC",
-                List.of("Thomas Aquinas", "Rene Descartes", "David Hume", "John Locke")),
+                List.of(new Task5.Contact("Thomas", "Aquinas")
+                    , new Task5.Contact("Rene", "Descartes")
+                    , new Task5.Contact("David", "Hume")
+                    , new Task5.Contact("John", "Locke"))),
             Arguments.of(
                 List.of("Paul Erdos", "Leonhard Euler", "Carl Gauss"), "DESC",
-                List.of("Carl Gauss", "Leonhard Euler", "Paul Erdos")),
+                List.of(new Task5.Contact("Carl", "Gauss"), new Task5.Contact("Leonhard", "Euler"), new Task5.Contact("Paul", "Erdos"))),
             Arguments.of(
                 List.of(), "DESC", List.of()
             ),
@@ -25,9 +28,9 @@ public class Task5Test {
     }
     @ParameterizedTest
     @MethodSource("parseContacts")
-    public void parseContactsTest(List<String> input, String order, List<String> expectedResult) {
+    public void parseContactsTest(List<String> input, String order, List<Task5.Contact> expectedResult) {
         // When
-        List<String> result = Task5.parseContacts(input, order);
+        List<Task5.Contact> result = Task5.parseContacts(input, order);
         // Then
         assertThat(result).isEqualTo(expectedResult);
     }
