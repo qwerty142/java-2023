@@ -36,9 +36,9 @@ public record Animal(
     public Set<ValidationError> validating(List<Validation> validations) {
         Set<ValidationError> validationErrors = new HashSet<>();
         for (var validator : validations) {
-            ValidationError cur = validator.validate(this);
-            if (!cur.name().isEmpty()) {
-                validationErrors.add(cur);
+            ValidationError curError = validator.validate(this);
+            if (curError.hasError()) {
+                validationErrors.add(curError);
             }
         }
         return validationErrors;

@@ -1,7 +1,11 @@
 package edu.hw4;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import java.util.List;
+import java.util.stream.Stream;
 import static edu.hw4.StreamTasks.isDogInList;
 import static org.assertj.core.api.Assertions.assertThat;
 public class Task14Test {
@@ -12,14 +16,18 @@ public class Task14Test {
     private final static Animal dog = new Animal("D", Animal.Type.DOG, Animal.Sex.F, 4, 16, 5, false);
     private final static Animal spider = new Animal("S", Animal.Type.SPIDER, Animal.Sex.M, 6, 7, 6, true);
 
-    @Test
-    public void shouldReturnIsDogInList() {
-        // GIVEN
-        List<Animal> animals = List.of(fish, bird, cat, cat1, dog, spider);
-        Boolean expected = true;
-        // When
-        Boolean res = isDogInList(animals, 1);
-        // Then
-        assertThat(res).isEqualTo(expected);
+    static Stream<Arguments> task14Args() {
+        return Stream.of(
+            Arguments.of(List.of(), 1, false),
+            Arguments.of(List.of(fish), 1, false),
+            Arguments.of(List.of(dog), 1, true),
+            Arguments.of(List.of(fish, bird, cat, cat1, dog, spider), 10, true)
+        );
+    }
+    @ParameterizedTest
+    @MethodSource("task14Args")
+    public void shouldReturnIsDogInList(List<Animal> animals, int height, boolean result) {
+
+        assertThat(isDogInList(animals, height)).isEqualTo(result);
     }
 }

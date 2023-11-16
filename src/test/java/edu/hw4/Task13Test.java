@@ -1,7 +1,11 @@
 package edu.hw4;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import java.util.List;
+import java.util.stream.Stream;
 import static edu.hw4.StreamTasks.animalsWithNameOfMoreThanTwoWords;
 import static org.assertj.core.api.Assertions.assertThat;
 public class Task13Test {
@@ -12,14 +16,18 @@ public class Task13Test {
     private final static Animal dog = new Animal("D", Animal.Type.DOG, Animal.Sex.F, 4, 16, 5, false);
     private final static Animal spider = new Animal("S", Animal.Type.SPIDER, Animal.Sex.M, 6, 7, 6, true);
 
-    @Test
-    public void shouldReturnAnimalsWithNameOfMoreThanTwoWords() {
-        // Given
-        List<Animal> animals = List.of(fish, bird, cat, cat1, dog, spider);
-        List<Animal> expected = List.of(bird, cat1);
-        // When
-        List<Animal> res = animalsWithNameOfMoreThanTwoWords(animals);
-        // Then
-        assertThat(res).isEqualTo(expected);
+    static Stream<Arguments> task13Args() {
+        return Stream.of(
+            Arguments.of(List.of(), List.of()),
+            Arguments.of(List.of(fish), List.of()),
+            Arguments.of(List.of(fish, bird), List.of(bird)),
+            Arguments.of(List.of(fish, bird, cat, cat1, dog, spider), List.of(bird, cat1))
+        );
+    }
+    @ParameterizedTest
+    @MethodSource("task13Args")
+    public void shouldReturnAnimalsWithNameOfMoreThanTwoWords(List<Animal> animals, List<Animal> result) {
+
+        assertThat(animalsWithNameOfMoreThanTwoWords(animals)).isEqualTo(result);
     }
 }

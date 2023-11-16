@@ -6,12 +6,14 @@ import edu.hw4.Validators.ValidateWeight;
 import edu.hw4.Validators.Validation;
 import edu.hw4.Validators.ValidationError;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.provider.Arguments;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Stream;
 import static edu.hw4.StreamTasks.animalsWithErrors;
 import static org.assertj.core.api.Assertions.assertThat;
 public class Task19Test {
@@ -29,9 +31,9 @@ public class Task19Test {
         // Given
         List<Animal> animals = List.of(fish, cat, cat1, dog, spider);
         Map<String, Set<ValidationError>> expected = new HashMap<>();
-        expected.put("F", Set.of(new ValidationError("height", "Height is unreal")));
-        expected.put("C", Set.of(new ValidationError("age", "unreal age")));
-        expected.put("C1 g", Set.of(new ValidationError("weight", "unreal weight")));
+        expected.put("F", Set.of(new ValidationError(true,"height", "Height is unreal")));
+        expected.put("C", Set.of(new ValidationError(true,"age", "unreal age")));
+        expected.put("C1 g", Set.of(new ValidationError(true,"weight", "unreal weight")));
         List<Validation> validations = List.of(new ValidateAge(), new ValidateHeight(), new ValidateWeight());
         // When
         Map<String, Set<ValidationError>> res = animalsWithErrors(animals, validations);

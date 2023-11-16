@@ -11,7 +11,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import static edu.hw4.StreamTasks.beautifulAnimalsWithErrors;
+import static edu.hw4.StreamTasks.animalNamesAndErrorsCombinedIntoString;
 import static org.assertj.core.api.Assertions.assertThat;
 public class Task20Test {
     private final static Animal fish = new Animal("F", Animal.Type.FISH, Animal.Sex.F, 1, -1, 1, false);
@@ -27,12 +27,12 @@ public class Task20Test {
     public void shouldReturnBeautifulAnimalsWithErrors() {
         List<Animal> animals = List.of(fish, cat, cat1, dog, spider);
         Map<String, String> expected = new HashMap<>();
-        expected.put("F", Set.of(new ValidationError("height", "Height is unreal")).toString());
-        expected.put("C", Set.of(new ValidationError("age", "unreal age")).toString());
-        expected.put("C1 g", Set.of(new ValidationError("weight", "unreal weight")).toString());
+        expected.put("F", Set.of(new ValidationError(true,"height", "Height is unreal")).toString());
+        expected.put("C", Set.of(new ValidationError(true,"age", "unreal age")).toString());
+        expected.put("C1 g", Set.of(new ValidationError(true,"weight", "unreal weight")).toString());
         List<Validation> validations = List.of(new ValidateAge(), new ValidateHeight(), new ValidateWeight());
         // When
-        Map<String, String> res = beautifulAnimalsWithErrors(animals, validations);
+        Map<String, String> res = animalNamesAndErrorsCombinedIntoString(animals, validations);
         // Then
         assertThat(res).isEqualTo(expected);
     }

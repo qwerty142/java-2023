@@ -1,7 +1,11 @@
 package edu.hw4;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import java.util.List;
+import java.util.stream.Stream;
 import static edu.hw4.StreamTasks.mostWeightedFish;
 import static org.assertj.core.api.Assertions.assertThat;
 public class Task18Test {
@@ -14,18 +18,25 @@ public class Task18Test {
     private final static Animal fish1 = new Animal("S", Animal.Type.FISH, Animal.Sex.M, 6, 7, 6, true);
     private final static Animal fish2 = new Animal("S", Animal.Type.FISH, Animal.Sex.M, 6, 7, 10, true);
 
-    @Test
-    public void shouldReturnMostWeightedFish() {
-        // Given
-        List<Animal> first = List.of(fish, bird, cat);
-        List<Animal> second = List.of(fish1, dog, cat);
-        List<Animal> third = List.of(fish2, spider, cat1);
-        List<List<Animal>> animals = List.of(first, second, third);
-        Animal expected = fish2;
-        // When
-        Animal res = mostWeightedFish(animals);
-        // Then
-        assertThat(res).isEqualTo(expected);
+    static Stream<Arguments> task18Test() {
+        return Stream.of(
+            Arguments.of(
+                List.of(
+                    List.of(bird, fish, cat),
+                    List.of(fish1, dog, cat),
+                    List.of(fish2, spider, cat1)
+                ),
+                fish2
+            ),
+            Arguments.of(List.of(List.of(), List.of(fish)), fish),
+            Arguments.of(List.of(List.of(fish, fish2)), fish2)
+        );
+    }
+    @ParameterizedTest
+    @MethodSource("task18Test")
+    public void shouldReturnMostWeightedFish(List<List<Animal>> animals, Animal result) {
+
+        assertThat(mostWeightedFish(animals)).isEqualTo(result);
 
     }
 }

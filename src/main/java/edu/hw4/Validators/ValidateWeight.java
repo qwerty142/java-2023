@@ -6,13 +6,13 @@ public class ValidateWeight implements Validation {
     @SuppressWarnings("checkstyle:MagicNumber") @Override
     public ValidationError validate(Animal animal) {
         if (animal == null) {
-            return new ValidationError("animal", "null animal");
+            return new ValidationError(true, "animal", "null animal");
         }
 
         if (animal.weight() < 0 || animal.weight() > 100000) {
-            return new ValidationError("weight", "unreal weight");
+            return new ValidationError(true, "weight", "unreal weight");
         }
 
-        return new ValidationError("", "success");
+        return new ValidationError(false, "", "success");
     }
 }

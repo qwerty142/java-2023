@@ -2,6 +2,7 @@ package edu.hw4;
 
 import edu.hw4.Validators.Validation;
 import edu.hw4.Validators.ValidationError;
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -15,14 +16,14 @@ import java.util.stream.Collectors;
 @SuppressWarnings({"checkstyle:LineLength", "checkstyle:RegexpSingleline"}) public final class StreamTasks {
     private StreamTasks() {}
 
-    public static List<Animal> sortAnimalsHeight(List<Animal> animals) {
+    public static List<Animal> sortAnimalsByHeight(List<Animal> animals) {
         if (animals == null) {
             return List.of();
         }
         return animals.stream().sorted(Comparator.comparing(Animal::height)).toList();
     }
 
-    public static  List<Animal> sortAnimalsWeight(List<Animal> animals, int amount) {
+    public static  List<Animal> getFirstNAnimalsByWeight(List<Animal> animals, int amount) {
         return animals.stream()
             .sorted(Comparator
                 .comparing(Animal::weight)
@@ -119,9 +120,7 @@ import java.util.stream.Collectors;
     public static Boolean isDogInList(List<Animal> animals, long k) {
         return animals
             .stream()
-            .filter(animal -> (animal.type() == Animal.Type.DOG && animal.height() > k))
-            .toList()
-            .size() != 0;
+            .anyMatch(animal -> (animal.type() == Animal.Type.DOG && animal.height() > k));
     }
 
     public static Map<Animal.Type, Integer> summaryWeightOfEachAnimalOfNeededAge(List<Animal> animals, long k, long i) {
@@ -158,7 +157,7 @@ import java.util.stream.Collectors;
     }
 
     public static Animal mostWeightedFish(List<List<Animal>> animals) {
-        long maxWeight = 0;
+        /*long maxWeight = 0;
         Animal res = null;
         for (var elem : animals) {
             Animal cur = elem.stream()
@@ -168,9 +167,14 @@ import java.util.stream.Collectors;
                 maxWeight = cur.weight();
                 res = cur;
             }
-        }
+        }*/
 
-        return res;
+        return animals
+            .stream()
+            .flatMap(Collection::stream)
+            .filter(animal -> animal.type() == Animal.Type.FISH)
+            .max(Comparator.comparing(Animal::weight))
+            .get();
     }
 
     public static Map<String, Set<ValidationError>> animalsWithErrors(List<Animal> animals, List<Validation> validations) {
@@ -180,7 +184,7 @@ import java.util.stream.Collectors;
             .collect(Collectors.toMap(Animal::name, animal -> animal.validating(validations)));
     }
 
-    public static Map<String, String> beautifulAnimalsWithErrors(List<Animal> animals, List<Validation> validations) {
+    public static Map<String, String> animalNamesAndErrorsCombinedIntoString(List<Animal> animals, List<Validation> validations) {
         return animals
             .stream()
             .filter(animal -> !animal.validating(validations).isEmpty())
