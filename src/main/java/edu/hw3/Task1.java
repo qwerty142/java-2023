@@ -7,7 +7,6 @@ public final class Task1 {
     private Task1() {}
 
     private static Map<Character, Character> comparisonMap = new HashMap<>();
-    private static StringBuilder stringBuilder;
 
     static {
         for (Character i = 'A'; i <= 'Z'; i++) {
@@ -21,6 +20,7 @@ public final class Task1 {
 
     public static String atbash(String input) {
 
+        StringBuilder stringBuilder;
         stringBuilder = new StringBuilder(input);
         for (int i = 0; i < stringBuilder.length(); i++) {
             if (comparisonMap.containsKey(stringBuilder.charAt(i))) {
