@@ -28,19 +28,19 @@ public class Log {
     }
 
     private final static Pattern LOG_PATTERN = Pattern.compile("(.+?) - (.+?) \\[(.+?)] \"(.+?)\" (\\d+) (\\d+) \"(.+?)\" \"(.+?)\"");
-    protected String address;
-    protected String user;
-    protected String request;
-    protected String resource;
-    protected String reference;
-    protected String httpUser;
-    protected OffsetDateTime time;
-    protected String command;
-    protected int status;
-    protected long bytesSend;
+    public String address;
+    public String user;
+    public String request;
+    public String resource;
+    public String reference;
+    public String httpUser;
+    public OffsetDateTime time;
+    public String command;
+    public int status;
+    public long bytesSend;
 
     @SuppressWarnings({"checkstyle:MagicNumber", "checkstyle:HiddenField"})
-    public Log createLog(String log) {
+    public static Log createLog(String log) {
         Matcher matcher = LOG_PATTERN.matcher(log);
         Log currentLog = new Log();
 
@@ -62,7 +62,7 @@ public class Log {
     }
 
     @SuppressWarnings("checkstyle:ParameterAssignment")
-    private OffsetDateTime dateParser(String date) {
+    private static OffsetDateTime dateParser(String date) {
 
         for (Map.Entry<String, String> itr : CHANGE_DATE_FOR_PARSER.entrySet()) {
             date = date.replaceFirst(itr.getKey(), itr.getValue());
