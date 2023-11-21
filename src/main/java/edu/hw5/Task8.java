@@ -6,7 +6,7 @@ public final class Task8 {
     private Task8() {}
 
     private static final Pattern PATTERN1 = Pattern.compile("([10][10])*[10]$");
-    private static final Pattern PATTERN2 = Pattern.compile("(^[0]([10][10])*$)|(^[1]([10][110])*[10]$)");
+    private static final Pattern PATTERN2 = Pattern.compile("(^[0]([10][10])*$)|(^[1]([10][10])*[10]$)");
     private static final Pattern PATTERN3 = Pattern.compile("(^1*$)|(^(1*01*01*01*)*$)");
     private static final Pattern PATTERN4 = Pattern.compile("(?!(^11$|^111$))(^[10]*$)");
     private static final Pattern PATTERN5 = Pattern.compile("^(1[10])*[1]?$");

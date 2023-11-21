@@ -12,13 +12,13 @@ public final class Task1 {
     private Task1() {}
 
     @SuppressWarnings("checkstyle:MultipleStringLiterals")
-    public static String countTime(List<String> inputDate) {
-        if (inputDate == null) {
+    public static String countTime(List<String> inputDates) {
+        if (inputDates == null || inputDates.isEmpty()) {
             throw new IllegalArgumentException();
         }
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd, HH:mm");
         Duration res = Duration.ZERO;
-        for (var string : inputDate) {
+        for (var string : inputDates) {
             String[] strings = string.split(" - ");
             if (!inputPattern.matcher(strings[0]).matches()
                 || !inputPattern.matcher(strings[1]).matches()) {
@@ -29,7 +29,7 @@ public final class Task1 {
             LocalDateTime end = LocalDateTime.parse(strings[1], dateTimeFormatter);
             res = res.plus(Duration.between(start, end));
         }
-        res = res.dividedBy(inputDate.size());
-        return res.toString();
+        res = res.dividedBy(inputDates.size());
+        return res.toString().replaceFirst("H", "ч ").replaceFirst("M", "м");
     }
 }

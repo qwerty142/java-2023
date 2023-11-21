@@ -1,21 +1,28 @@
 package edu.hw5.Parsers;
 
+import javax.swing.text.DateFormatter;
 import java.time.LocalDate;
 import java.util.Optional;
-import java.util.regex.Pattern;
 
-public final class StandardDateParser {
-    private StandardDateParser() {}
+public class StandardDateParser extends DateParse {
 
-    static Pattern pattern = Pattern.compile("\\d{4}-\\d{2}-\\d{2}");
+    static String pattern = "\\d{1,4}-\\d{1,2}-\\d{1,2}";
 
-    public static ParseResult tryStandardParse(ParseResult result) {
-        if (result == null) {
-            throw new IllegalArgumentException();
+    @Override
+    public Optional<LocalDate> parse(String date) {
+        if (date == null || !date.matches(pattern)) {
+            return parseNext(date);
         }
-        if (!pattern.matcher(result.date()).matches()) {
-            return result;
-        }
-        return new ParseResult(result.date(), Optional.of(LocalDate.parse(result.date())), true);
+        int index = date.lastIndexOf("-");
+        String[] dateFormater = date.split("-");
+
+        // Это не самое оптимальное, но явно более читаемо чем возьня с индексами
+        return Optional.of(
+            LocalDate.of(
+                Integer.parseInt(dateFormater[0]),
+                Integer.parseInt(dateFormater[1]),
+                Integer.parseInt(dateFormater[2])
+            )
+        );
     }
 }

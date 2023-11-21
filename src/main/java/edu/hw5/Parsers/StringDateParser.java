@@ -3,30 +3,23 @@ package edu.hw5.Parsers;
 import java.time.LocalDate;
 import java.util.Optional;
 
-public final class StringDateParser {
-    private StringDateParser() {}
+public class StringDateParser extends DateParse {
 
     static Optional<LocalDate> tomorrow = Optional.of(LocalDate.now().plusDays(1));
     static Optional<LocalDate> today = Optional.of(LocalDate.now());
     static Optional<LocalDate> yesterday = Optional.of(LocalDate.now().minusDays(1));
 
     @SuppressWarnings("checkstyle:ReturnCount")
-    public static ParseResult tryParseString(ParseResult result) {
-        if (result == null) {
-            throw new IllegalArgumentException();
+    @Override
+    public Optional<LocalDate> parse(String date) {
+        if (date == null) {
+            return Optional.empty();
         }
-        if (result.parseResult()) {
-            return result;
-        }
-        switch (result.date()) {
-            case "tomorrow":
-                return new ParseResult(result.date(), tomorrow, true);
-            case "today":
-                return new ParseResult(result.date(), today, true);
-            case "yesterday":
-                return new ParseResult(result.date(), yesterday, true);
-            default:
-                return result;
-        }
+        return switch (date) {
+            case "tomorrow" -> tomorrow;
+            case "today" -> today;
+            case "yesterday" -> yesterday;
+            default -> parseNext(date);
+        };
     }
 }
