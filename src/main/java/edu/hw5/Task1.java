@@ -30,6 +30,6 @@ public final class Task1 {
             res = res.plus(Duration.between(start, end));
         }
         res = res.dividedBy(inputDates.size());
-        return res.toString().replaceFirst("H", "ч ").replaceFirst("M", "м");
+        return res.toString().replaceFirst("H", "ч ").replaceFirst("M", "м").replaceFirst("PT", "");
     }
 }
