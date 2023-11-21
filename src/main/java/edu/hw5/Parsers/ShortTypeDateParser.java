@@ -2,7 +2,6 @@ package edu.hw5.Parsers;
 
 import java.time.LocalDate;
 import java.util.Optional;
-import java.util.regex.Pattern;
 
 public class ShortTypeDateParser extends DateParse {
     static String pattern = "\\d{1,2}/\\d{1,2}/\\d{1,4}";
