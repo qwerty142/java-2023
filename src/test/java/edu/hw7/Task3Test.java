@@ -43,7 +43,7 @@ public class Task3Test {
     }
 
     @Test
-    public void ShouldReturnValueAfterAddOperationReadWriteLock() {
+    public void ShouldReturnValueAfterAddOperationReadWriteLock() throws InterruptedException {
         PersonDatabaseReadWriteLock personDatabase = new PersonDatabaseReadWriteLock();
         Person p = new Person(1, "name", "address", "phone");
         List<Person> result = List.of(p);
@@ -64,6 +64,8 @@ public class Task3Test {
             referenceForPhone.set(personDatabase.findByPhone("phone"));
         });
         thread1.start();
+        // без join у гита тест падает, при этом у меня не падет
+        thread1.join();
         thread2.start();
         thread3.start();
         thread4.start();
