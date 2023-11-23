@@ -1,6 +1,5 @@
 package edu.hw7;
 
-import edu.hw7.Task3.IPersonDatabase;
 import edu.hw7.Task3.Person;
 import edu.hw7.Task3.PersonDatabaseReadWriteLock;
 import edu.hw7.Task3.PersonDatabaseSynchronized;
@@ -11,9 +10,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class Task3Test {
     @Test
-    public void ShouldReturnValueAfterAddOperationSynchronized() throws InterruptedException {
+    public void ShouldReturnValueAfterAddOperationSynchronized() {
         PersonDatabaseSynchronized personDatabase = new PersonDatabaseSynchronized();
-        List<Person> result;
         AtomicReference<List<Person>> referenceForName = new AtomicReference<>(List.of());
         AtomicReference<List<Person>> referencePerson = new AtomicReference<>(List.of());
         AtomicReference<List<Person>> referenceForAddress = new AtomicReference<>(List.of());
