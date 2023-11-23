@@ -67,8 +67,11 @@ public class Task3Test {
         // без join у гита тест падает, при этом у меня не падет
         thread1.join();
         thread2.start();
+        thread2.join();
         thread3.start();
+        thread3.join();
         thread4.start();
+        thread4.join();
 
         assertThat(result).isEqualTo(referenceForName.get());
         assertThat(result).isEqualTo(referenceForAddress.get());
