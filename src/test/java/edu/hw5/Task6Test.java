@@ -14,7 +14,8 @@ public class Task6Test {
             Arguments.of("achfdbaabgabcaabg", "abc"),
             Arguments.of("abcdfrg", "abcdfr"),
             Arguments.of("fffff", "fff"),
-            Arguments.of("asdf", "asdf") // same
+            Arguments.of("asdf", "asdf"), // same
+            Arguments.of("{,}", "{,}")
         );
     }
 
@@ -26,9 +27,9 @@ public class Task6Test {
 
     @Test
     public void TestOnNull() {
-        assertThrows(NullPointerException.class, () -> Task6.checkOnSubString(null, null));
-        assertThrows(NullPointerException.class, () -> Task6.checkOnSubString("ac", null));
-        assertThrows(NullPointerException.class, () -> Task6.checkOnSubString(null, "ac"));
+        assertThrows(IllegalArgumentException.class, () -> Task6.checkOnSubString(null, null));
+        assertThrows(IllegalArgumentException.class, () -> Task6.checkOnSubString("ac", null));
+        assertThrows(IllegalArgumentException.class, () -> Task6.checkOnSubString(null, "ac"));
     }
 
     static Stream<Arguments> InCorrectSubs() {
