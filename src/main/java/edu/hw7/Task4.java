@@ -4,12 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-@SuppressWarnings("checkstyle:RegexpSingleline") public final class Task4 {
+@SuppressWarnings("checkstyle:RegexpSingleline")
+public final class Task4 {
     private Task4() {}
 
     private static final double PI_COEFFICIENT = 4;
-    private static final double RADIUS = 0.5;
-    private static final double CENTER_OF_CIRCLE = 0.5;
+    private static final double RADIUS = 1;
+    private static final double CENTER_OF_CIRCLE = 0;
 
     public static double multiThreadMethod(int amountOfPoints, int amountOfThreads) {
         double pi = 0;
@@ -42,9 +43,9 @@ import java.util.Random;
         double x;
         double y;
         for (int i = 0; i < amountOfPoints; i++) {
-            x = random.nextDouble();
-            y = random.nextDouble();
-            if (Math.sqrt((CENTER_OF_CIRCLE - x) * (CENTER_OF_CIRCLE - x) + (CENTER_OF_CIRCLE - y) * (CENTER_OF_CIRCLE - y)) <= RADIUS) {
+            x = random.nextDouble() * 2 - 1;
+            y = random.nextDouble() * 2 - 1;
+            if (Math.pow(x, 2) + Math.pow(y, 2) <= RADIUS) {
                 amountOfCaughtPoints++;
             }
         }

@@ -1,19 +1,27 @@
 package edu.hw7.Task3;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
-public class PersonDatabaseReadWriteLock implements IPersonDatabase {
+public class ReadWriteLockPersonDatabase implements IPersonDatabase {
     private final ReadWriteLock readWriteLock = new ReentrantReadWriteLock(true);
-    public List<Person> database = new ArrayList<>();
+    public Map<Integer, Person> data = new HashMap<>();
+    public Map<String, List<Person>> dataByName = new HashMap<>();
+    public Map<String, List<Person>> dataByAddress = new HashMap<>();
+    public Map<String, List<Person>> dataByPhone = new HashMap<>();
 
     @Override
     public void add(Person person) {
         readWriteLock.writeLock().lock();
         try {
-            database.add(person);
+            data.put(person.id(), person);
+            dataByName.computeIfAbsent(person.name(), l -> new ArrayList<>()).add(person);
+            dataByAddress.computeIfAbsent(person.address(), l -> new ArrayList<>()).add(person);
+            dataByPhone.computeIfAbsent(person.phoneNumber(), l -> new ArrayList<>()).add(person);
         } finally {
             readWriteLock.writeLock().unlock();
         }
@@ -23,7 +31,10 @@ public class PersonDatabaseReadWriteLock implements IPersonDatabase {
     public void delete(int id) {
         readWriteLock.writeLock().lock();
         try {
-            database.removeIf(obj -> obj.id() == id);
+            Person deleted = data.remove(id);
+            dataByName.get(deleted.name()).remove(deleted);
+            dataByAddress.get(deleted.address()).remove(deleted);
+            dataByPhone.get(deleted.phoneNumber()).remove(deleted);
         } finally {
             readWriteLock.writeLock().unlock();
         }
@@ -33,7 +44,7 @@ public class PersonDatabaseReadWriteLock implements IPersonDatabase {
     public List<Person> findByName(String name) {
         readWriteLock.readLock().lock();
         try {
-            return database.stream().filter(obj -> obj.name().equals(name)).toList();
+            return dataByName.getOrDefault(name, List.of());
         } finally {
             readWriteLock.readLock().unlock();
         }
@@ -43,7 +54,7 @@ public class PersonDatabaseReadWriteLock implements IPersonDatabase {
     public List<Person> findByAddress(String address) {
         readWriteLock.readLock().lock();
         try {
-            return database.stream().filter(obj -> obj.address().equals(address)).toList();
+            return dataByAddress.getOrDefault(address, List.of());
         } finally {
             readWriteLock.readLock().unlock();
         }
@@ -53,7 +64,7 @@ public class PersonDatabaseReadWriteLock implements IPersonDatabase {
     public List<Person> findByPhone(String phone) {
         readWriteLock.readLock().lock();
         try {
-            return database.stream().filter(obj -> obj.phoneNumber().equals(phone)).toList();
+            return dataByPhone.getOrDefault(phone, List.of());
         } finally {
             readWriteLock.readLock().unlock();
         }

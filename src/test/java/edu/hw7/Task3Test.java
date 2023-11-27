@@ -1,8 +1,8 @@
 package edu.hw7;
 
 import edu.hw7.Task3.Person;
-import edu.hw7.Task3.PersonDatabaseReadWriteLock;
-import edu.hw7.Task3.PersonDatabaseSynchronized;
+import edu.hw7.Task3.ReadWriteLockPersonDatabase;
+import edu.hw7.Task3.SynchronizedPersonDatabase;
 import org.junit.jupiter.api.Test;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class Task3Test {
     @Test
     public void ShouldReturnValueAfterAddOperationSynchronized() {
-        PersonDatabaseSynchronized personDatabase = new PersonDatabaseSynchronized();
+        SynchronizedPersonDatabase personDatabase = new SynchronizedPersonDatabase();
         AtomicReference<List<Person>> referenceForName = new AtomicReference<>(List.of());
         AtomicReference<List<Person>> referencePerson = new AtomicReference<>(List.of());
         AtomicReference<List<Person>> referenceForAddress = new AtomicReference<>(List.of());
@@ -30,7 +30,7 @@ public class Task3Test {
             referenceForPhone.set(personDatabase.findByPhone("phone"));
         });
         thread1.start();
-        referencePerson.set(personDatabase.database);
+        referencePerson.set(List.of(new Person(1, "name", "address", "phone")));
         thread2.start();
         thread3.start();
         thread4.start();
@@ -44,7 +44,7 @@ public class Task3Test {
 
     @Test
     public void ShouldReturnValueAfterAddOperationReadWriteLock() throws InterruptedException {
-        PersonDatabaseReadWriteLock personDatabase = new PersonDatabaseReadWriteLock();
+        ReadWriteLockPersonDatabase personDatabase = new ReadWriteLockPersonDatabase();
         Person p = new Person(1, "name", "address", "phone");
         List<Person> result = List.of(p);
         AtomicReference<List<Person>> referenceForName = new AtomicReference<>(List.of());
