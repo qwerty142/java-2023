@@ -3,7 +3,7 @@ package edu.hw8.Task2;
 import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.LinkedBlockingDeque;
 
-public class FixedThreadPool implements ThreadPool{
+public class FixedThreadPool implements ThreadPool {
     private final BlockingDeque<Runnable> tasks;
     private final Thread[] threads;
 
@@ -19,9 +19,10 @@ public class FixedThreadPool implements ThreadPool{
     public static FixedThreadPool create(int amountOfThreads) {
         return new FixedThreadPool(amountOfThreads);
     }
+
     @Override
     public void start() {
-        for(int i = 0; i < threads.length; i++) {
+        for (int i = 0; i < threads.length; i++) {
             threads[i] = new Thread(() -> {
                 while (true) {
                     try {
