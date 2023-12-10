@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -28,14 +29,17 @@ public class Task1Test {
 
     @ParameterizedTest
     @MethodSource("dataTest")
-    public void correctWorkOfPrallelTest(List<double[]> stats, Map<String, Statistic> result) {
+    public void correctWorkOfPrallelTest(List<double[]> stats, Map<String, Statistic> result)
+        throws InterruptedException {
         ExecutorService service = Executors.newFixedThreadPool(3);
         Task1 collector = new Task1(3);
         for (int i = 0; i < stats.size(); i++) {
-            int finalI = i;
-            service.execute(() -> collector.addStats("Stats" + finalI, stats.get(finalI)));
+            int finalI = i + 1;
+            int finalI1 = i;
+            service.execute(() -> collector.addStats("Stats " + finalI, stats.get(finalI1)));
         }
         service.shutdown();
+        service.awaitTermination(10000, TimeUnit.MILLISECONDS);
         assertThat(collector.getData()).isEqualTo(result);
     }
 }

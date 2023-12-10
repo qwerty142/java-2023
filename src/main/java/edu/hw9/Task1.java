@@ -3,6 +3,7 @@ package edu.hw9;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 public class Task1 {
     private final ExecutorService threadPool;
@@ -17,8 +18,10 @@ public class Task1 {
         this.data = new ConcurrentHashMap<>();
     }
 
-    public ConcurrentHashMap<String, Statistic> getData() {
+    @SuppressWarnings("checkstyle:MagicNumber") public ConcurrentHashMap<String, Statistic> getData()
+        throws InterruptedException {
         threadPool.shutdown();
+        threadPool.awaitTermination(100000, TimeUnit.MILLISECONDS);
         return data;
     }
 
