@@ -30,16 +30,14 @@ import java.util.concurrent.ThreadPoolExecutor;
     }
 
     public ServerImpl(int amountOfUsers, Context context) {
+        if (amountOfUsers < 1) {
+            throw new IllegalArgumentException();
+        }
         this.context = context;
         threadPoolExecutor =
             (ThreadPoolExecutor)
                 Executors
-                    .newFixedThreadPool(
-                        Math
-                            .min(amountOfUsers,
-                                Runtime.getRuntime().availableProcessors()
-                            )
-                    );
+                    .newFixedThreadPool(amountOfUsers);
     }
 
     @Override

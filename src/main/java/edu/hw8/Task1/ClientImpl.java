@@ -38,7 +38,7 @@ public class ClientImpl implements IClient {
 
     @SuppressWarnings("checkstyle:MagicNumber") @Override
     public String send(String message) {
-        byteBuffer = ByteBuffer.allocate(256);
+        byteBuffer = ByteBuffer.allocate(message.length());
         byteBuffer.put(message.getBytes());
         String answer = null;
         try {
