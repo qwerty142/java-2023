@@ -44,14 +44,12 @@
         <maven-site-plugin.version>4.0.0-M9</maven-site-plugin.version>
 
         <jacoco-maven-plugin.version>0.8.10</jacoco-maven-plugin.version>
-<<<<<<< Updated upstream
-=======
 
         <jmh.version>1.37</jmh.version>
 
         <bytebuddy.version>1.14.8</bytebuddy.version>
         <asm.version>9.6</asm.version>
->>>>>>> Stashed changes
+
     </properties>
 
     <dependencyManagement>
@@ -113,8 +111,6 @@
             <artifactId>pair</artifactId>
             <version>1.1.0</version>
         </dependency>
-<<<<<<< Updated upstream
-=======
 
         <!-- JMH -->
         <dependency>
@@ -145,7 +141,7 @@
             <artifactId>byte-buddy</artifactId>
             <version>${bytebuddy.version}</version>
         </dependency>
->>>>>>> Stashed changes
+
     </dependencies>
 
     <build>
